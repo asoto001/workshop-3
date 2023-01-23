@@ -101,49 +101,38 @@ const renderBtns = (arrayPokemons) => {
   containerButtons.innerHTML = '';
   arrayPokemons.forEach((pokemom) => {
     containerButtons.innerHTML += `
-      <button id= "${pokemom.id}" class="buttons-container__btn">
-        <figure>
-            <img src="${pokemom.image}" alt="pokemon">
+      <button  class="buttons-container__btn">
+        <figure id= "${pokemom.id}">
+            <img src="${pokemom.image}" id= "${pokemom.id}" alt="${pokemom.name}">
         </figure>
       </button>
       
     `
   })
-  botones = document.querySelectorAll('.buttons-container__btn')
-  selecPoke()
+  // botones = document.querySelectorAll('.buttons-container__btn')
+  // selecPoke()
 }
 
-const selecPoke = () => {
-  botones.forEach((boton) => {
-    boton.addEventListener('click', (e) => {
-      console.log(e)
-    })
-  })
-}
+// const selecPoke = () => {
+//   botones.forEach((boton) => {
+//     boton.addEventListener('click', (e) => {
+//       console.log(e)
+//       let bpokemon = 0;
+//       if (e.target.alt === 'bulbasaur'){
+//         boton.style.background = 'black';
+//         bpokemon = listPokemons[0];
+//         renderPokemon(bpokemon)
+
+//       }
+//     })
+//   })
+// }
 
 
-const renderAbilities = (arrayAbilities) => {
-  let abilitiesList = "";
-  arrayAbilities.forEach((ability) => {
-    abilitiesList += `
-        <span class="card__abilities">${ability.ability.name}</span>
-        `;
-  });
-  return abilitiesList;
-};
 
-const renderType = (arrayTypes) => {
-  let typeList = "";
-  arrayTypes.forEach((types) => {
-    typeList += `
-      
-      <span class="info-text">${types.type.name}</span>
-    `
-  });
-  return typeList
-}
 
 const renderPokemon = (pokemom) => {
+  containerCards.innerHTML = ''
   containerCards.innerHTML = `
     <section class="charizard-container">
       <div class="title">
@@ -160,17 +149,17 @@ const renderPokemon = (pokemom) => {
       <div class="row-info">
           <div class="row-item">
               <span class="title-info">No.</span>
-              ${renderType(pokemom.type)}
+              <span class="info-text">${pokemom.id}</span>
           </div>
           <div class="row-item">
               <span class="title-info">LEVEL</span>
-              <span class="info-text">${pokemom.experience}   </span>
+              <span class="info-text">${pokemom.experience}</span>
           </div>
       </div>
       <div class="row-info">
           <div class="row-item">
               <span class="title-info">TYPE</span>
-              <span class="info-text">FIRE</span>
+              ${renderType(pokemom.types)}
           </div>
           <div class="row-item">
               <span class="title-info">HABILITY</span>
@@ -211,7 +200,17 @@ search.addEventListener("submit", async (event) => {
     const pokemon = await getData(searchURL);
     console.log(pokemon);
       if (pokemon) {
-        renderPokemon(pokemon);
+        const pokesearch = {
+          name: pokemon.name,
+          image: pokemon.sprites.front_default,
+          weight: pokemon.weight,
+          height: pokemon.height,
+          experience: pokemon.base_experience,
+          abilities: pokemon.abilities,
+          types: pokemon.types,
+          id : pokemon.id
+        }
+        renderPokemon(pokesearch);
     }
   }
 });
@@ -221,4 +220,36 @@ search.addEventListener("submit", async (event) => {
 
 function aleatorio(min, max){
   return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+// asldfhijgawerfg
+
+containerButtons.addEventListener('click', (e) => {
+  if (e.target.id){
+    let arrayPoke = listPokemons.filter(pokeBtn => pokeBtn.id == e.target.id)
+    console.log(arrayPoke)
+    renderPokemon(arrayPoke[0])
+  }
+  
+})
+
+const renderAbilities = (arrayAbilities) => {
+  let abilitiesList = "";
+  arrayAbilities.forEach((ability) => {
+    abilitiesList += `
+        <span class="card__abilities">${ability.ability.name}</span>
+        `;
+  });
+  return abilitiesList;
+};
+
+const renderType = (arrayTypes) => {
+  console.log(arrayTypes)
+  let typeList = "";
+  arrayTypes.forEach((types) => {
+    typeList += `
+      <span class="info-text">${types.type.name}</span>
+    `
+  });
+  return typeList
 }
