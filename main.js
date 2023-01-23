@@ -47,7 +47,7 @@ const renderPokemons = (arrayPokemons) => {
     <section class="charizard-container">
             <div class="title">
                 <figure>
-                    <img src="https://static.vecteezy.com/system/resources/previews/001/188/706/original/flame-png.png" alt="llama">
+                    <img src="${pokemom.image}" alt="llama">
                 </figure>
                 <h2>${pokemom.name}</h2>
             </div>
@@ -109,24 +109,9 @@ const renderBtns = (arrayPokemons) => {
       
     `
   })
-  // botones = document.querySelectorAll('.buttons-container__btn')
-  // selecPoke()
 }
 
-// const selecPoke = () => {
-//   botones.forEach((boton) => {
-//     boton.addEventListener('click', (e) => {
-//       console.log(e)
-//       let bpokemon = 0;
-//       if (e.target.alt === 'bulbasaur'){
-//         boton.style.background = 'black';
-//         bpokemon = listPokemons[0];
-//         renderPokemon(bpokemon)
 
-//       }
-//     })
-//   })
-// }
 
 
 
@@ -137,7 +122,7 @@ const renderPokemon = (pokemom) => {
     <section class="charizard-container">
       <div class="title">
           <figure>
-              <img src="https://static.vecteezy.com/system/resources/previews/001/188/706/original/flame-png.png" alt="llama">
+              <img src="${pokemom.image}" alt="llama">
           </figure>
           <h2>${pokemom.name}</h2>
       </div>
@@ -190,7 +175,6 @@ const search = document.querySelector(".form__search");
 search.addEventListener("submit", async (event) => {
   event.preventDefault();
   const inputSearch = document.querySelector("#inputSearch");
-  //Los valores que JavaScript reconoce como false son: undefined, null, 0, '' (strig vacío), NaN.
   const searchTerm = inputSearch.value;
   if (searchTerm) {
     console.log(searchTerm);

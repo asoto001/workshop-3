@@ -25,6 +25,13 @@ body{
     padding: 15px;
     gap: 10px;
     border-radius: 15px 15px 0 0;
+    justify-content: space-between;
+}
+
+.header1{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }
 
 .encabezado figure img{
@@ -92,15 +99,25 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .title-info{
     font-size: 20px;
+    justify-content: center;
+    padding-right: 10px;
 }
 
 .info-text{
     font-size: 24px;
     font-weight: bolder;
+    justify-content: center;
+}
+
+.hability{
+    display: flex;
+    padding-top: 20px;
+    justify-content: center;
 }
 
 .footer-content{
@@ -138,7 +155,51 @@ body{
     width: 65%;
 }
 
-@media screen and (max-width) {
+#inputSearch {
+    background-color: var(--ligthPurple);
+    border-radius: 10px;
+    width: 180px;
+    height: 25px;
+    border-color: #fff;
+}
+
+.btn{
+    background-color: var(--ligthPurple);
+    border-color: #fff;
+    width: 65px;
+    height: 25px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+body::-webkit-scrollbar {
+    background: #E3DFDE;
+}
+
+body::-webkit-scrollbar-thumb {
+    /* background: #F8E4F5; */
+    /* background-color: floralwhite; */
+    border-radius: 10px;
+    background: #d7b3e7;
+}
+
+.buttons-container::-webkit-scrollbar{
+    background: #F8E4F5;
+}
+
+.buttons-container::-webkit-scrollbar-thumb{
+    background: #d7b3e7;
+    border-radius: 10px;
+}
+
+.search ::placeholder{
+    color: black;
+}
+
+
+@media (max-width: 700px) {
+
     .encabezado{
         justify-content: center;
 
@@ -155,5 +216,32 @@ body{
         width: 85%;
         height: 60vh;
         transform: translateY(-100px);
+    }
+
+    .buttons-container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer-content{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .others{
+        padding-top: 80px;
+    }
+
+    .btn{
+        margin-left: 60px;
+        margin-top: 8px;
+    }
+
+    .row-info{
+        justify-content: center;
+    }
+
+    .title-info{
+        justify-content: center;
     }
 }
